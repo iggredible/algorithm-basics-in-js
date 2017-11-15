@@ -160,14 +160,6 @@ function logNestedArrayAndMore(arr){
 
 The function above can be said to have O(n<sup>2</sup>). There is a nested loop (O(n<sup>2</sup>)) and a regular loop (O(n)), making O(n<sup>2</sup> + n). The last rule of thumb is, we only care about the most significant portion and we can drop everything else. Think about this: if we have a million array (n = 1,000,000) and we have O(n<sup>2</sup> + n), the n portion accounts for less than 0.00001% of total operations. Since it is insignificant when n is large, we can safely drop it.
 
-### Chunking
-
-Over time, you will learn to approximate Big-O values just by looking at them.
-
-/...
-
-The goal of knowing Big-O is to create codes with the lowest Big-O value as possible. Avoid nesting too many loops.  
-
 ### Order of magnitudes
 
 Not an exhaustive list, but the order of Big-O notation from small to largest:
@@ -181,3 +173,43 @@ Not an exhaustive list, but the order of Big-O notation from small to largest:
 - O(c<sup>n</sup>)
 
 *Note the last list, O(c<sup>n</sup>) is true when c > 1.*
+
+### End Goal
+
+Over time, you will learn to approximate Big-O values just by sectioning and comparing them based on magnitude.
+
+For example, looking at the palindrome code below ([source](https://stackoverflow.com/questions/22111507/how-to-write-palindrome-in-javascript))
+
+```
+function palindrome(str) {
+    var len = str.length;  //=> This line is O(1)
+    for ( var i = 0; i < Math.floor(len/2); i++ ) { //=> this for loop is O(n)
+        if (str[i] !== str[len - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+```
+
+The first section, `var len = str.length` is constant. The second section, the for loop is dependent on string length (even though it has `Math.floor(len/2)`, if we have a string 1,000,000 characters long, it will be proportionally large), therefore it has Big-O of O(n). The largest section is O(n). Therefore the function can be said to be O(n) overall.
+
+The goal of knowing Big-O is to create codes with the lowest Big-O value as possible. Avoid nesting too many loops.  
+
+## Space Complexities
+
+We went over time complexities. Another important consideration when measuring Big-O is how much space it is taking when running a program.
+
+The idea behind space complexity is similar to time complexity. For example:
+
+```
+function sumItUp(arr){
+  var total = 0;
+  for(var i = 0; i < arr.length; i++){
+    total+= arr[i]
+  }
+  return total;
+}
+```
+
+The first line, `var total = 0` takes up only one memory space (regardless the input size). However, since the for loop depends on the size of the array, the Big-O is O(n).

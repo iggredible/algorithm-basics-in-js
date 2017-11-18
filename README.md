@@ -39,9 +39,12 @@ The following are roughly equal one "space unit":
 
 Whenever you create a single variable/ instantiate a blank array or object, you take up a space somewhere in the memory that costs one space unit.
 
-### Some examples
+### Time complexities
 
-I find myself understanding Big-O best when I see examples.
+Most of this guide I will be talking about time complexity (runtime). At the end, I will briefly talk about space complexity (memory).
+
+I find myself understanding Big-O best when I see examples, so here goes:
+
 
 ```
 //example1
@@ -160,7 +163,7 @@ function logNestedArrayAndMore(arr){
 
 The function above can be said to have O(n<sup>2</sup>). There is a nested loop (O(n<sup>2</sup>)) and a regular loop (O(n)), making O(n<sup>2</sup> + n). The last rule of thumb is, we only care about the most significant portion and we can drop everything else. Think about this: if we have a million array (n = 1,000,000) and we have O(n<sup>2</sup> + n), the n portion accounts for less than 0.00001% of total operations. Since it is insignificant when n is large, we can safely drop it.
 
-### Order of magnitudes
+#### Order of magnitudes
 
 Not an exhaustive list, but the order of Big-O notation from small to largest:
 
@@ -174,7 +177,7 @@ Not an exhaustive list, but the order of Big-O notation from small to largest:
 
 *Note the last list, O(c<sup>n</sup>) is true when c > 1.*
 
-### End Goal
+#### End Goal
 
 Over time, you will learn to approximate Big-O values just by sectioning and comparing them based on magnitude.
 
@@ -196,7 +199,7 @@ The first section, `var len = str.length` is constant. The second section, the f
 
 The goal of knowing Big-O is to create codes with the lowest Big-O value as possible. Avoid nesting too many loops.  
 
-## Space Complexities
+### Space Complexities
 
 We went over time complexities. Another important consideration when measuring Big-O is how much space it is taking when running a program.
 
